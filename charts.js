@@ -71,7 +71,6 @@ function buildCharts(sample) {
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otuId = result.otu_ids;
     var otuLabel = result.otu_labels;
-
     var sampleValue = result.sample_values.map((value) => parseInt(value));
 
     // 7. Create the yticks for the bar chart.
@@ -89,11 +88,13 @@ function buildCharts(sample) {
       type: "bar",
       orientation: "h",
     };
+
     // 9. Create the layout for the bar chart. 
     var barLayout = {
       title: "Top 10 Bacteria Cultures Found",
       y: 2
     };
+
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", [barData], barLayout);
   
@@ -103,14 +104,6 @@ function buildCharts(sample) {
 
     // 1. Create the trace for the bubble chart.
     //https://plotly.com/javascript/colorscales/
-    /*var bubbleData = {
-      x: otuId,
-      y: sampleValue,
-      text: otuLabel,
-      mode: 'markers',
-      marker: {size: sampleValue, color: otuId, colorscale: 'Earth'}
-    };*/
-
     var bubbleData = {
       x: otuId,
       y: sampleValue,
@@ -122,6 +115,7 @@ function buildCharts(sample) {
         colorscale: "Earth"
       }
     };
+
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
       title: 'Bacteria Cultures Per Sample',
@@ -140,12 +134,10 @@ function buildCharts(sample) {
    
    
     // 1. Create a variable that filters the metadata array for the object with the desired sample number.
+     // Create a variable that holds the first sample in the array.
     var metadata = data.metadata;
     var metaArray = metadata.filter(data => data.id == sample);
   
-    // Create a variable that holds the first sample in the array.
-    
-
     // 2. Create a variable that holds the first sample in the metadata array.
     var result = resultArray[0];
 
@@ -156,7 +148,6 @@ function buildCharts(sample) {
 
     // 3. Create a variable that holds the washing frequency.
     //https://stackoverflow.com/questions/1458633/how-to-deal-with-floating-point-number-precision-in-javascript
-
    var washingFreq = metaArray[0].wfreq;
 
     // 4. Create the trace for the gauge chart.
